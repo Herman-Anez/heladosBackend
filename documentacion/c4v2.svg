@@ -8,102 +8,40 @@
 
 title  "Diagrama de Componentes del Sistema de autenticación por correo"
 
-System_Ext(es, "Servidor", "sistema externo que utiliza el servicio de autenticación") 
-Person_Ext(pe, "Label", "Usuario a autenticar") 
 
-System_Boundary(sy, "sistema de autenticación por correo", "Optional Description"){ 
-    
-    ContainerDb(redis, "Database", "Base de datos") 
-   
-    Container_Boundary(mail, "Servidor de mensajería"){ 
-        Component(c3m, "Controlador de mensajería", "Web api controller") 
-        Component(c3m2, "Módulo de mensajeria", "Envia correos electronicos") 
-    }
-    
-    Container_Boundary(re, "Servidor de persistencia"){ 
-        Component(c2R, "Controlador de registro", "Web api controller") 
-        Component(c2V, "Controlador de autenticación", "Web api controller") 
-        Component(c2r, "Módulo de persistencia", "Hace operaciones en la base de datos") 
-    } 
-    
-    Container_Boundary(container1, "Api gateway"){ 
-        Component(c1R, "Controlador de registro", "Web api controller") 
-        Component(c1V, "Controlador de autenticación", "Web api controller") 
-        Component(c1m, "Módulo de mensajeria", "Hace llamadas al servicio de mensajeria") 
-        Component(c1r, "Módulo de persistencia", "Hace llamadas al servicio de persistencia") 
-    } 
-}
-Rel(c1r, c2V, "llamadas api","Json/Http") 
-Rel(c1r, c2R, "llamadas api","Json/Http") 
-Rel(c1R, c1m, "usa") 
-Rel(c1R, c1r, "usa") 
-Rel(c1V, c1r, "usa") 
-Rel(c1m, c3m, "llamadas api","Json/Http") 
-Rel(c2V, c2r, "usa",) 
-Rel(c2R, c2r, "usa",) 
-Rel(c2r, redis, "Escribe/lee/Borra",) 
-Rel_Right(pe, es, "introduce credenciales",) 
-Rel(es, c1R, "envía credenciales para su futura validación","Json/Http") 
-Rel(es, c1V, "envia numero de autenticación para comprobar identidad","Json/Http") 
-Rel(c3m, c3m2, "usa",) 
-Rel_L(c3m2, pe, "Envia correo electronico con numero de identificacion","SMTP")
+System_Boundary(sy, "Heladeria", " "){ 
 
-@enduml
-
-
-
-
-@startuml
-
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
-
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-
-title  "Diagrama de Componentes del Sistema de autenticación por correo"
-
-
-System_Boundary(sy, "Heladeria", "Optional Description"){ 
-
-    Container_Boundary(usuarios, "usuarios"){ 
+    Container_Boundary(usuarios, "usuarios"){
         Container(c11, "Repositorio de Usuario",) 
-        
-        [Usuario] 
-        
+        Component(Usuario, "Usuario", "Entity")
+        Rel(Usuario, c11, "Usa")
     } 
 
     Container_Boundary(inventario, "inventario"){ 
-    
-        Container(c2, "Repositorio de inventario") 
-       
-        Container_Boundary(sabores, "sabores"){ 
-            [Sabor] 
-            Container(c21, "Repositorio de Sabores") 
+        Container_Boundary(productos, "producto"){ 
+           Component(producto, "Productos", "Entity")
+           Container(c223, "Repositorio de productos") 
+           Component(user_id_vo1, "UserId (Value Object)", "Identity Reference", "Referencia al ID de otro contexto")
+           Rel(producto, user_id_vo1, "contiene") 
+           Rel(c223 ,producto ,"Usa")
         }
-       
-        Container_Boundary(topings, "sabores"){ 
-           [toping] 
-           Container(c22, "Repositorio de topings") 
-        }
-        
-
         
     } 
-        
+
     Container_Boundary(ventas, "ventas"){ 
-        [venta] 
+        Component(Venta, "venta", "Entity")
         Container(c31, "Repositorio de ventas") 
+        Component(user_id_vo2, "UserId (Value Object)", "Identity Reference", "Referencia al ID de otro contexto")
+        Component(product_id_vo2, "ProductId (Value Object)", "Identity Reference", "Referencia al ID de otro contexto")
+        Rel(Venta, user_id_vo2, "contiene") 
+        Rel(Venta, product_id_vo2, "contiene") 
+        Rel(c31, Venta ,"Usa")
+        
     }
-    
-Rel(c31, c2, "depende") 
-
-
-Rel(c2, c22, "depende")  
-Rel(c2, c21, "depende") 
-
-Rel(c31, c11, "depende")  
-Rel(c2, c11, "depende")  
-}
-
+  
+        Rel(product_id_vo2, producto,"Apunta a", "ID Mapping")
+        Rel(user_id_vo2, Usuario,"Apunta a", "ID Mapping")  
+        Rel_R(user_id_vo1, Usuario,"Apunta a", "ID Mapping")  
 
 @enduml
 
