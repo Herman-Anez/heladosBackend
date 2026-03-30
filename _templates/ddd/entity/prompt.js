@@ -9,6 +9,16 @@ module.exports = [
             return true;
         }
     },
+        {
+        type: 'input',
+        name: 'plural',
+        message: "¿Nombre de la entidad en plural? (ej. User)",
+        validate: (val) => {
+            if (!val) return "El nombre es obligatorio.";
+            if (/\s/.test(val)) return "No uses espacios.";
+            return true;
+        }
+    },
     {
         type: 'confirm',
         name: 'addVO',

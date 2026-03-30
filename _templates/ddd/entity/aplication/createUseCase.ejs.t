@@ -2,7 +2,7 @@
 to: src/modules/<%= h.changeCase.param(name) %>/application/Create<%= h.changeCase.pascal(name) %>.useCase.ts
 ---
 <% Name = h.changeCase.pascal(name) -%>
-import { I<%= Name %>Repository } from '../domain/<%= Name %>Entity';
+import { I<%= Name %>Repository } from '../domain/<%= Name %>.entity';
 
 export class Create<%= Name %>UseCase {
   constructor(private repository: I<%= Name %>Repository) {}

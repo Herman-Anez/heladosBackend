@@ -1,5 +1,5 @@
 ---
-to: src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.pascal(name) %>Entity.ts
+to: src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.pascal(name) %>.entity.ts
 ---
 <% 
   const Name = h.changeCase.pascal(name)
@@ -24,15 +24,15 @@ export interface <%= Name %>Props {
   // Añade aquí el resto de VOs si addVO es true...
 }
 
-export class <%= Name %>Entity extends AggregateRoot< <%= Name %>Props> {
+export class <%= Name %> extends AggregateRoot< <%= Name %>Props> {
   
   // El constructor ahora llama a super()
   private constructor(props: <%= Name %>Props, id: <%= IdName %>) {
     super(props, id.getValue());
   }
 
-  static create(props: <%= Name %>Props, id: <%= IdName %>): <%= Name %>Entity {
-    const entity = new <%= Name %>Entity(props, id);
+  static create(props: <%= Name %>Props, id: <%= IdName %>): <%= Name %> {
+    const entity = new <%= Name %>(props, id);
 
     <% if(addEvents){ -%>
     entity.record(new <%= Name %>CreatedEvent(id.getValue()));
@@ -46,8 +46,8 @@ export class <%= Name %>Entity extends AggregateRoot< <%= Name %>Props> {
  * Se implementará en la capa de Infrastructure
  */
 export interface I<%= Name %>Repository {
-  save(entity: <%= Name %>Entity): Promise<void>;
-  findById(id: <%= IdName %>): Promise<<%= Name %>Entity | null>;
-  findAll(): Promise<<%= Name %>Entity[]>;
+  save(entity: <%= Name %>): Promise<void>;
+  findById(id: <%= IdName %>): Promise<<%= Name %> | null>;
+  findAll(): Promise<<%= Name %>[]>;
   delete(id: <%= IdName %>): Promise<void>;
 }
