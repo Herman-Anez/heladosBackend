@@ -1,4 +1,4 @@
-export class UserCreatedEvent {
+export class SaborCreatedEvent {
   public readonly occurredOn: Date;
   public readonly aggregateId: string;
 
@@ -8,6 +8,6 @@ export class UserCreatedEvent {
   }
 
   static eventName(): string {
-    return 'user.created';
+    return 'sabor.created';
   }
 }
