@@ -1,0 +1,63 @@
+@startuml AuthenticationComponentDiagram
+!define DARK_BLUE #1E1E2E
+!define LIGHT_BLUE #89B4FA
+!define BORDER_COLOR #45475A
+!define TEXT_COLOR #CDD6F4
+!define SUB_TEXT #A6ADC8
+!define ACCENT #FAB387
+
+skinparam backgroundColor DARK_BLUE
+skinparam DefaultFontColor TEXT_COLOR
+skinparam TitleFontColor ACCENT
+skinparam TitleFontSize 20
+
+
+
+' Flechas y líneas
+skinparam ArrowColor ACCENT
+skinparam ArrowFontColor SUB_TEXT
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title  "Diagrama de Componentes del Sistema de autenticación por correo"
+
+    System_Boundary(sy, "Heladeria", "  "){ 
+
+        Container_Boundary(usuarios, "usuarios"){
+            Container(c11, "Repositorio de Usuario",) 
+            Component(Usuario, "Usuario", "Entity")
+            Rel(Usuario, c11, "Usa")
+        } 
+
+        Container_Boundary(inventario, "inventario"){ 
+            Container(inventarioService, "Inventario Service") 
+        
+
+        Container_Boundary(producto2, "producto2"){ 
+            Component(p2, "Productos", "Entity")
+            Container(p2repo, "Repositorio de productos") 
+            Component(user_id_vo1p2, "UserId (Value Object)", "Identity Reference", "Referencia al ID de otro contexto")
+            Rel(p2, user_id_vo1p2, "contiene") 
+            Rel(p2repo ,p2 ,"Usa")
+            }
+            Rel(inventarioService ,p2repo ,"Usa")
+        } 
+
+        Container_Boundary(ventas, "ventas"){ 
+            Component(Venta, "venta", "Entity")
+            Container(c31, "Repositorio de ventas") 
+            Component(user_id_vo2, "UserId (Value Object)", "Identity Reference", "Referencia al ID de otro contexto")
+            Component(product_id_vo2, "ProductId (Value Object)", "Identity Reference", "Referencia al ID de otro contexto")
+            Rel(Venta, user_id_vo2, "contiene") 
+            Rel(Venta, product_id_vo2, "contiene") 
+            Rel(c31, Venta ,"Usa")
+            
+        }
+    Rel(product_id_vo2, p2,"Apunta a 1", "ID Mapping") 
+    Rel(user_id_vo2, Usuario,"Apunta a 2", "ID Mapping")
+    Rel_R(user_id_vo1p2, Usuario,"Apunta a 3", "ID Mapping")
+
+@enduml
+

@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 export class CreateSaborUseCase {
   constructor(private readonly repo: SaborRepository) {}
 
-  async execute(createSaborDto: ) {
+  async execute(createSaborDto: CrearSaborDTO) {
     const sabor = new Sabor(uuid(), createSaborDto.name, createSaborDto.price);
     return this.repo.create(sabor);
   }

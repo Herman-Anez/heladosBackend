@@ -1,0 +1,21 @@
+@startuml Capa0
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title "Diagrama de Contexto (Capa 0) - Sistema de Heladería"
+
+Person(cliente, "Cliente", "Persona que desea comprar helados a través de la App o en local.")
+Person(admin, "Administrador / Empleado", "Gestiona el inventario, sabores y revisa reportes de ventas.")
+
+System(sistema_heladeria, "Sistema de Heladería", "Permite la gestión de inventario, procesamiento de ventas y fidelización de usuarios.")
+
+System_Ext(pasarela_pago, "Pasarela de Pagos (Stripe/PayPal)", "Sistema externo para procesar transacciones bancarias.")
+System_Ext(servicio_email, "Servicio de Email (SendGrid)", "Sistema externo para enviar recibos y notificaciones de stock bajo.")
+
+Rel(cliente, sistema_heladeria, "Consulta productos y realiza pedidos")
+Rel(admin, sistema_heladeria, "Gestiona stock y supervisa ventas")
+
+Rel(sistema_heladeria, pasarela_pago, "Envía solicitud de cobro", "HTTPS/JSON")
+Rel(sistema_heladeria, servicio_email, "Envía alertas y comprobantes", "SMTP/API")
+
+Rel_Back(pasarela_pago, sistema_heladeria, "Confirma estado del pago")
+@enduml
