@@ -16,7 +16,7 @@ export class InMemory<%= Name %>Repository implements I<%= Name %>Repository {
   private <%= Plural %>: <%= Name %>[] = [];
 
   async save(<%= Lname %>: <%= Name %>): Promise<void> {
-    this.sabores.push(sabor);
+    this.<%= Plural %>.push(<%= Lname %>);
   }
 
   async create(<%= Lname %>: <%= Name %>): Promise< <%= Name %>> {
@@ -29,16 +29,16 @@ export class InMemory<%= Name %>Repository implements I<%= Name %>Repository {
   }
 
   async findById(id: <%= Name %>IdVo): Promise< <%= Name %> | null> {
-    return this.<%= Plural %>.find((p) => p.id === id.getValue()) || null;
+    return this.<%= Plural %>.find((p) => p.id.getValue() === id.getValue()) || null;
   }
 
   async update(<%= Lname %>: <%= Name %>): Promise< <%= Name %>> {
-    const index = this.<%= Plural %>.findIndex((p) => p.id === <%= Lname %>.id);
+    const index = this.<%= Plural %>.findIndex((p) => p.id.getValue() === <%= Lname %>.id.getValue());
     this.<%= Plural %>[index] = <%= Lname %>;
     return <%= Lname %>;
   }
 
   async delete(id: <%= Name %>IdVo): Promise<void> {
-    this.<%= Plural %> = this.<%= Plural %>.filter((p) => p.id !== id.getValue());
+    this.<%= Plural %> = this.<%= Plural %>.filter((p) => p.id.getValue() !== id.getValue());
   }
 }

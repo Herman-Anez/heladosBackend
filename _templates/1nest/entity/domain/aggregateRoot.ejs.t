@@ -2,17 +2,17 @@
 to: src/shared/domain/aggregateRoot.ts
 ---
 <% Name = h.changeCase.pascal(name) -%>
-export abstract class AggregateRoot<T> {
-  protected readonly _id: string; // O el tipo de ID que prefieras
+export abstract class AggregateRoot<T, ID = string> {
+  protected readonly _id: ID;
   public readonly props: T;
   private _domainEvents: any[] = [];
 
-  constructor(props: T, id: string) {
+  constructor(props: T, id: ID) {
     this._id = id;
     this.props = props;
   }
 
-  get id(): string {
+  get id(): ID {
     return this._id;
   }
 

@@ -22,24 +22,25 @@ import { <%= VoClassName %> } from './value-objects/<%= LVoClassName %>';
 
 export interface <%= Name %>Props {
   createdAt: Date;
+  id: <%= IdName %>
   <% if(addVO){ -%>
 <%= VoHolder %>: <%= VoClassName %>;
 <% } -%>
   // Añade aquí el resto de VOs si addVO es true...
 }
 
-export class <%= Name %> extends AggregateRoot< <%= Name %>Props> {
+export class <%= Name %> extends AggregateRoot< <%= Name %>Props, <%= Name %>IdVo> {
   
   // El constructor ahora llama a super()
   private constructor(props: <%= Name %>Props, id: <%= IdName %>) {
-    super(props, id.getValue());
+    super(props, id);
   }
 
   static create(props: <%= Name %>Props, id: <%= IdName %>): <%= Name %> {
     const entity = new <%= Name %>(props, id);
 
     <% if(addEvents){ -%>
-    entity.record(new <%= Name %>CreatedEvent(id.getValue()));
+    entity.record(new <%= Name %>CreatedEvent(id));
     <% } -%>
 
     return entity;
