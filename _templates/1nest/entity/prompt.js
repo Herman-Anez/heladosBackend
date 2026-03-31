@@ -22,20 +22,16 @@ module.exports = [
     {
         type: 'confirm',
         name: 'addVO',
-        message: "¿Deseas añadir un Value Object inicial?",
+        message: "¿Deseas añadir  Value Objects iniciales?",
         default: false
     },
     {
-        // Esta pregunta SOLO aparecerá si la anterior fue 'true'
         type: 'input',
-        name: 'voName',
-        message: "¿Cómo se llama el Value Object? (ej. Email, Password)",
-        // Usamos 'skip' para ocultarla si addVO es false
-        skip: (answers) => answers.addVO === false,
-        validate: (val) => {
-            if (!val) return "Debes darle un nombre al Value Object.";
-            if (/\s/.test(val)) return "No uses espacios.";
-            return true;
+        name: 'voList',
+        message: "Introduce los Value Objects separados por comas (ej: Email, Password, Phone) o deja vacío:",
+        result: (val) => {
+            if (!val) return [];
+            return typeof val === 'string' ? val.split(',').map(s => s.trim()) : val;
         }
     },
     {

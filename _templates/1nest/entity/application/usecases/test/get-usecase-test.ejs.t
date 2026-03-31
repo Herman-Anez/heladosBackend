@@ -1,5 +1,5 @@
 ---
-to: test-src/modules/<%= h.changeCase.param(name) %>/application/usecases/get-<%= h.changeCase.kebabCase(name) %>.usecase.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/application/usecases/get-<%= h.changeCase.kebabCase(name) %>.usecase.spec.ts
 ---
 <% 
 Name = h.changeCase.pascal(name) 

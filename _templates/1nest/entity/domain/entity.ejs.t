@@ -7,10 +7,7 @@ to: test-src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.keb
   kname = h.changeCase.kebabCase(name)
   const IdName = Name + 'IdVo' 
   const LIdName = kname + '-id-vo' 
-  const VoClassName = addVO ? Name + h.changeCase.pascal(voName) : null
-  const LVoClassName = addVO ? kname +"-"+h.changeCase.kebabCase(voName) : null
-  const VoHolder = addVO ? h.changeCase.camel(voName) : null
-  
+  const list = typeof voList === 'string' ? voList.split(',').map(v => v.trim()) : (voList || []);  
 -%>
 import { AggregateRoot } from '../../../shared/domain/aggregateRoot';
 import { <%= IdName %> } from './value-objects/<%= LIdName %>';
@@ -18,16 +15,27 @@ import { <%= IdName %> } from './value-objects/<%= LIdName %>';
 import { <%= Name %>CreatedEvent } from './events/<%= kname %>-created-event';
 <% } -%>
 <% if(addVO){ -%>
+<% list.forEach(vo => { -%>
+<% 
+  VoName = h.changeCase.pascal(vo)
+  VoClassName = addVO ? Name + h.changeCase.pascal(vo) : null
+  LVoClassName = addVO ? kname +"-"+h.changeCase.kebabCase(vo) : null
+-%>
 import { <%= VoClassName %> } from './value-objects/<%= LVoClassName %>';
+<% }) -%>
 <% } -%>
 
 export interface <%= Name %>Props {
   createdAt: Date;
   id: <%= IdName %>
   <% if(addVO){ -%>
+<% list.forEach(vo => { -%>
+<% 
+  VoHolder = addVO ? h.changeCase.camel(vo) : null
+-%>
 <%= VoHolder %>: <%= VoClassName %>;
+<% }) -%>
 <% } -%>
-  // Añade aquí el resto de VOs si addVO es true...
 }
 
 export class <%= Name %> extends AggregateRoot< <%= Name %>Props, <%= Name %>IdVo> {
@@ -53,7 +61,7 @@ export class <%= Name %> extends AggregateRoot< <%= Name %>Props, <%= Name %>IdV
  */
 export interface I<%= Name %>Repository {
   save(entity: <%= Name %>): Promise<void>;
-  findById(id: <%= IdName %>): Promise<<%= Name %> | null>;
-  findAll(): Promise<<%= Name %>[]>;
+  findById(id: <%= IdName %>): Promise< <%= Name %> | null>;
+  findAll(): Promise< <%= Name %>[]>;
   delete(id: <%= IdName %>): Promise<void>;
 }
