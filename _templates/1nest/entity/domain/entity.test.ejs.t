@@ -7,9 +7,6 @@ to: test-src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.keb
   kname = h.changeCase.kebabCase(name)
   const IdName = Name + 'IdVo' 
   const LIdName = kname + '-id-vo' 
-  const VoClassName = addVO ? Name + h.changeCase.pascal(voName) : null
-  const LVoClassName = addVO ? kname +"-"+h.changeCase.kebabCase(voName) : null
-  const VoHolder = addVO ? h.changeCase.camel(voName) : null
   
 -%>
 import {  <%= Name %> } from './<%= Lname %>.entity';

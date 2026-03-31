@@ -6,8 +6,6 @@ to: test-src/modules/<%= h.changeCase.param(name) %>/application/dtos/<%= h.chan
   const Lname = h.changeCase.camel(name)
   const IdName = Name + 'IdVo' 
   const Plural = h.changeCase.camel(plural)
-  const VoClassName = addVO ? Name + h.changeCase.pascal(voName) : null
-  const VoHolder = addVO ? h.changeCase.camel(voName) : null
 -%>
 <% 
 if(addBoilerplate)
