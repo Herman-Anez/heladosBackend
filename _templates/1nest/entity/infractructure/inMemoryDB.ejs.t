@@ -7,8 +7,6 @@ to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/persistence/
   kname = h.changeCase.kebabCase(name)
   const IdName = Name + 'IdVo' 
   const Plural = h.changeCase.camel(plural)
-  const VoClassName = addVO ? Name + h.changeCase.pascal(voName) : null
-  const VoHolder = addVO ? h.changeCase.camel(voName) : null
 -%>
 import { <%= Name %>, I<%= Name %>Repository  } from '../../../domain/<%= kname %>.entity';
 import { <%= Name %>IdVo } from '../../../domain/value-objects/<%= kname %>-id-vo';
