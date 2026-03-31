@@ -1,6 +1,6 @@
 ---
 inject: true
-to: src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.pascal(name) %>Entity.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.pascal(name) %>Entity.ts
 after: "export interface <%= h.changeCase.pascal(name) %>Props {"
 skip_if: "<%= h.changeCase.camel(voName) %>:"
 ---

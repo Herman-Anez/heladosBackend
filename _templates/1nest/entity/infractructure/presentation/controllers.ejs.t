@@ -1,5 +1,5 @@
 ---
-to: src/modules/<%= h.changeCase.param(name) %>/infrastructure/presentation/<%= h.changeCase.camel(name) %>.controller.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/presentation/<%= h.changeCase.camel(name) %>.controller.ts
 ---
 <% 
   const Name = h.changeCase.pascal(name)

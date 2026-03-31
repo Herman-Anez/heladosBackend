@@ -1,5 +1,5 @@
 ---
-to: src/shared/domain/aggregateRoot.ts
+to: test-src/shared/domain/aggregateRoot.ts
 ---
 <% Name = h.changeCase.pascal(name) -%>
 export abstract class AggregateRoot<T, ID = string> {

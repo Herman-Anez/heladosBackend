@@ -1,5 +1,5 @@
 ---
-to: "<%= addEvents ? `src/modules/${h.changeCase.param(name)}/domain/events/${h.changeCase.camel(name)}CreatedEvent.ts` : null %>"
+to: "<%= addEvents ? `test-src//modules/${h.changeCase.param(name)}/domain/events/${h.changeCase.camel(name)}CreatedEvent.ts` : null %>"
 ---
 <% if(addEvents){ -%>
 <% Name = h.changeCase.pascal(name) -%>

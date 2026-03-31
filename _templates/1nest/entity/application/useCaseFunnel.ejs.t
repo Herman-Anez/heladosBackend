@@ -1,5 +1,5 @@
 ---
-to: src/modules/<%= h.changeCase.param(name) %>/application/<%= h.changeCase.camel(name) %>.useCaseFunnel.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/application/<%= h.changeCase.camel(name) %>.useCaseFunnel.ts
 ---
 <% 
 Name = h.changeCase.pascal(name) 

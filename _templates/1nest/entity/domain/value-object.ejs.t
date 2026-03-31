@@ -1,5 +1,5 @@
 ---
-to: "<%= addVO ? `src/modules/${h.changeCase.param(name)}/domain/value-objects/${h.changeCase.camel(name)}${h.changeCase.pascal(voName)}.ts` : null %>"
+to: "<%= addVO ? `test-src//modules/${h.changeCase.param(name)}/domain/value-objects/${h.changeCase.camel(name)}${h.changeCase.pascal(voName)}.ts` : null %>"
 ---
 <% if(addVO){ -%>
 <% 

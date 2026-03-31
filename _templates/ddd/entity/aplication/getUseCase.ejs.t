@@ -1,5 +1,5 @@
 ---
-to: src/modules/<%= h.changeCase.param(name) %>/application/Get<%= h.changeCase.pascal(name) %>.useCase.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/application/Get<%= h.changeCase.pascal(name) %>.useCase.ts
 ---
 <% Name = h.changeCase.pascal(name) -%>
 import { I<%= Name %>Repository } from '../domain/<%= Name %>.entity';

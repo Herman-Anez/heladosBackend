@@ -1,5 +1,5 @@
 ---
-to: src/modules/<%= h.changeCase.param(name) %>/infrastructure/persistence/in-memory/<%= h.changeCase.pascal(name) %>.InMemory<%= h.changeCase.pascal(name) %>Repository.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/persistence/in-memory/<%= h.changeCase.pascal(name) %>.InMemory<%= h.changeCase.pascal(name) %>Repository.ts
 ---
 <% 
   const Name = h.changeCase.pascal(name)

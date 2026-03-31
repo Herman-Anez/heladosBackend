@@ -1,5 +1,5 @@
 ---
-to: src/modules/<%= h.changeCase.param(name) %>/infrastructure/presentation/controllers/<%= h.changeCase.pascal(name) %>.InMemory<%= h.changeCase.pascal(name) %>controller.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/presentation/controllers/<%= h.changeCase.pascal(name) %>.InMemory<%= h.changeCase.pascal(name) %>controller.ts
 ---
 <% 
   const Name = h.changeCase.pascal(name)

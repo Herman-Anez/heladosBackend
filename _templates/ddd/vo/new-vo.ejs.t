@@ -1,5 +1,5 @@
 ---
-to: src/modules/<%= h.changeCase.param(name) %>/domain/value-objects/<%= h.changeCase.pascal(name) %><%= h.changeCase.pascal(voName) %>.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/domain/value-objects/<%= h.changeCase.pascal(name) %><%= h.changeCase.pascal(voName) %>.ts
 ---
 <% 
   EntityName = h.changeCase.pascal(name)

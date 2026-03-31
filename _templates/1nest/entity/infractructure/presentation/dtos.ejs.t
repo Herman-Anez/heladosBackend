@@ -1,5 +1,5 @@
 ---
-to: src/modules/<%= h.changeCase.param(name) %>/infrastructure/presentation/dtos/create<%= h.changeCase.pascal(name) %>.dto.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/presentation/dtos/create<%= h.changeCase.pascal(name) %>.dto.ts
 ---
 <% 
   const Name = h.changeCase.pascal(name)
