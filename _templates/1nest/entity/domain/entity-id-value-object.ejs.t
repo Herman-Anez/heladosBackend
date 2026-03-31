@@ -1,5 +1,5 @@
 ---
-to: test-src/modules/<%= h.changeCase.param(name) %>/domain/value-objects/<%= h.changeCase.camel(name) %>IdVo.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/domain/value-objects/<%= h.changeCase.kebabCase(name) %>-id-vo.ts
 ---
 <% 
 Name = h.changeCase.pascal(name)+"IdVo" 

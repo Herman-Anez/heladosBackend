@@ -1,16 +1,17 @@
 ---
-to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/persistence/in-memory/<%= h.changeCase.camel(name) %>.InMemory<%= h.changeCase.pascal(name) %>Repository.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/persistence/in-memory/<%= h.changeCase.kebabCase(name) %>-repository.ts
 ---
 <% 
   const Name = h.changeCase.pascal(name)
   const Lname = h.changeCase.camel(name)
+  kname = h.changeCase.kebabCase(name)
   const IdName = Name + 'IdVo' 
   const Plural = h.changeCase.camel(plural)
   const VoClassName = addVO ? Name + h.changeCase.pascal(voName) : null
   const VoHolder = addVO ? h.changeCase.camel(voName) : null
 -%>
-import { <%= Name %>, I<%= Name %>Repository  } from '../../../domain/<%= Lname %>.entity';
-import { <%= Name %>IdVo } from '../../../domain/value-objects/<%= Lname %>IdVo';
+import { <%= Name %>, I<%= Name %>Repository  } from '../../../domain/<%= kname %>.entity';
+import { <%= Name %>IdVo } from '../../../domain/value-objects/<%= kname %>-id-vo';
 
 export class InMemory<%= Name %>Repository implements I<%= Name %>Repository {
   private <%= Plural %>: <%= Name %>[] = [];

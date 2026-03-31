@@ -1,9 +1,10 @@
 ---
-to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/presentation/<%= h.changeCase.camel(name) %>.controller.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/presentation/<%= h.changeCase.kebabCase(name) %>.controller.ts
 ---
 <% 
   const Name = h.changeCase.pascal(name)
   const Lname = h.changeCase.camel(name)
+  kname = h.changeCase.kebabCase(name)
   const IdName = Name + 'IdVo' 
   const Plural = h.changeCase.camel(plural)
   const VoClassName = addVO ? Name + h.changeCase.pascal(voName) : null
@@ -18,8 +19,8 @@ import {
   Patch,
   Delete,
 } from '@nestjs/common';
-import { <%= Name %>UseCases } from '../../application/<%= Lname %>.useCaseFunnel';
-import { Create<%= Name %>Dto, Update<%= Name %>Dto } from './dtos/create<%= Name %>.dto';
+import { <%= Name %>UseCases } from '../../application/<%= kname %>.use-case-funnel';
+import { Create<%= Name %>Dto, Update<%= Name %>Dto } from '../../application/dtos/create-<%= kname %>.dto';
 
 
 @Controller('<%= Lname %>')

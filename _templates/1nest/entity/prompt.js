@@ -43,5 +43,11 @@ module.exports = [
         name: 'addEvents',
         message: "¿Deseas que la entidad emita Eventos de Dominio?",
         default: true
-    }
+    },
+    {
+        type: 'confirm',
+        name: 'addBoilerplate',
+        message: "¿Deseas añadir un Boilerplate de nest?",
+        default: false
+    },
 ];

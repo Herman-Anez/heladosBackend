@@ -1,20 +1,21 @@
 ---
-to: test-src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.camel(name) %>.entity.ts
+to: test-src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.kebabCase(name) %>.entity.ts
 ---
 <% 
   const Name = h.changeCase.pascal(name)
   const Lname = h.changeCase.camel(name)
+  kname = h.changeCase.kebabCase(name)
   const IdName = Name + 'IdVo' 
-  const LIdName = Lname + 'IdVo' 
+  const LIdName = kname + '-id-vo' 
   const VoClassName = addVO ? Name + h.changeCase.pascal(voName) : null
-    const LVoClassName = addVO ? Lname + h.changeCase.pascal(voName) : null
+  const LVoClassName = addVO ? kname +"-"+h.changeCase.kebabCase(voName) : null
   const VoHolder = addVO ? h.changeCase.camel(voName) : null
   
 -%>
 import { AggregateRoot } from '../../../shared/domain/aggregateRoot';
 import { <%= IdName %> } from './value-objects/<%= LIdName %>';
 <% if(addEvents){ -%>
-import { <%= Name %>CreatedEvent } from './events/<%= Lname %>CreatedEvent';
+import { <%= Name %>CreatedEvent } from './events/<%= kname %>-created-event';
 <% } -%>
 <% if(addVO){ -%>
 import { <%= VoClassName %> } from './value-objects/<%= LVoClassName %>';
