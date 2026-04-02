@@ -6,11 +6,11 @@ to: test-src/modules/<%= h.changeCase.param(name) %>/domain/<%= h.changeCase.keb
   const Lname = h.changeCase.camel(name)
   kname = h.changeCase.kebabCase(name)
   const IdName = Name + 'IdVo' 
-  const LIdName = kname + '-id-vo' 
+  const LIdName = kname + '-vos' 
   
 -%>
 import {  <%= Name %> } from './<%= Lname %>.entity';
-import {  <%= Name %>IdVo } from './value-objects/<%= Lname %>-id-vo';
+import {  <%= Name %>IdVo } from './value-objects/<%= Lname %>-vos';
 
 describe(' <%= Name %> Entity', () => {
   it('debería crear un  <%= Lname %> válido y registrar el evento  <%= Name %>CreatedEvent', () => {

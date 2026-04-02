@@ -9,35 +9,41 @@ to: test-src/modules/<%= h.changeCase.param(name) %>/infrastructure/persistence/
   const Plural = h.changeCase.camel(plural)
 -%>
 import { <%= Name %>, I<%= Name %>Repository  } from '../../../domain/<%= kname %>.entity';
-import { <%= Name %>IdVo } from '../../../domain/value-objects/<%= kname %>-id-vo';
+import { <%= Name %>IdVo } from '../../../domain/value-objects/<%= kname %>-vos';
 
 export class InMemory<%= Name %>Repository implements I<%= Name %>Repository {
   private <%= Plural %>: <%= Name %>[] = [];
 
   async save(<%= Lname %>: <%= Name %>): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, 50));
     this.<%= Plural %>.push(<%= Lname %>);
   }
 
   async create(<%= Lname %>: <%= Name %>): Promise< <%= Name %>> {
+  await new Promise((resolve) => setTimeout(resolve, 50));
     this.<%= Plural %>.push(<%= Lname %>);
     return <%= Lname %>;
   }
 
   async findAll(): Promise< <%= Name %>[]> {
+  await new Promise((resolve) => setTimeout(resolve, 50));
     return this.<%= Plural %>;
   }
 
   async findById(id: <%= Name %>IdVo): Promise< <%= Name %> | null> {
+  await new Promise((resolve) => setTimeout(resolve, 50));
     return this.<%= Plural %>.find((p) => p.id.getValue() === id.getValue()) || null;
   }
 
   async update(<%= Lname %>: <%= Name %>): Promise< <%= Name %>> {
+  await new Promise((resolve) => setTimeout(resolve, 50));
     const index = this.<%= Plural %>.findIndex((p) => p.id.getValue() === <%= Lname %>.id.getValue());
     this.<%= Plural %>[index] = <%= Lname %>;
     return <%= Lname %>;
   }
 
   async delete(id: <%= Name %>IdVo): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, 50));
     this.<%= Plural %> = this.<%= Plural %>.filter((p) => p.id.getValue() !== id.getValue());
   }
 }

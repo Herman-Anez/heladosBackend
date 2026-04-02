@@ -6,7 +6,7 @@ Name = h.changeCase.pascal(name)
 Lname = h.changeCase.camel(name)
 kname = h.changeCase.kebabCase(name)
 IdName = Name + 'IdVo'
-LIdName = kname + '-id-vo'  
+LIdName = kname + '-vos'  
 -%>
 import { Create<%= Name %>UseCase } from './create-<%= Lname %>.usecase';
 import { I<%= Name %>Repository } from '../../domain/<%= Lname %>.entity';

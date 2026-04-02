@@ -9,6 +9,7 @@ kname = h.changeCase.kebabCase(name)
 import { Injectable } from '@nestjs/common';
 import { I<%= Name %>Repository } from '../../domain/<%= kname %>.entity';
 import { <%= IdName %> } from '../../domain/value-objects/<%= LIdName %>';
+import { DomainException } from '../../../shared/domain/domain-exception';
 
 @Injectable()
 export class Update<%= Name %>UseCase {
@@ -16,7 +17,7 @@ export class Update<%= Name %>UseCase {
 
   async execute(id: <%= Name %>IdVo, data: any): Promise<void> {
     const <%= Lname %>I = await this.repository.findById(id);
-    if (!<%= Lname %>I) throw new Error('Product not found');
+    if (!<%= Lname %>I) throw new DomainException('Product not found');
     /*update Sabor atributes*/
     return this.repository.save(<%= Lname %>I);
   }

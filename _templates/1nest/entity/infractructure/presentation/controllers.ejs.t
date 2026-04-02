@@ -17,8 +17,8 @@ import {
   Patch,
   Delete,
 } from '@nestjs/common';
-import { <%= Name %>UseCases } from '../../application/<%= kname %>.use-case-funnel';
-import { Create<%= Name %>Dto, Update<%= Name %>Dto } from '../../application/dtos/create-<%= kname %>.dto';
+import { <%= Name %>UseCases } from '../../application/<%= kname %>.usecase-funnel';
+import { Create<%= Name %>Dto, Update<%= Name %>Dto } from '../../application/dtos/<%= kname %>.dto';
 
 
 @Controller('<%= Lname %>')
