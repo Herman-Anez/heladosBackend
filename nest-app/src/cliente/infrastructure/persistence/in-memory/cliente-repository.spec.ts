@@ -1,6 +1,6 @@
 import { InMemoryClienteRepository } from './cliente-repository';
 import { Cliente,ClienteProps } from '../../../domain/cliente.entity';
-import { ClienteIdVo,ClienteEmail,ClienteNumber, } from '../../../domain/value-objects/cliente-vos';
+import { ClienteIdVo,ClienteEmail,ClienteNumber,ClienteAddress, } from '../../../domain/value-objects/cliente-vos';
 
 describe('InMemoryClienteRepository', () => {
   let repository: InMemoryClienteRepository;
@@ -16,6 +16,7 @@ const createStubCliente = (idString: string, firstVoValue: string = 'test-value'
       createdAt: new Date(),
       email: ClienteEmail.create(firstVoValue),
       number: ClienteNumber.create('test-number'),
+      address: ClienteAddress.create('test-address'),
     };
     return Cliente.create(props);
   };

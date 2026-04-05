@@ -66,3 +66,25 @@ export class ClienteNumber {
     return this.value === other.getValue();
   }
 }
+export class ClienteAddress {
+  private readonly value: string;
+
+  private constructor(value: string) {
+    this.value = value;
+  }
+
+  public static create(value: string): ClienteAddress {
+    if (!value || value.length < 3) {
+      throw new DomainException(`Invalid Address: ${value}`);
+    }
+    return new ClienteAddress(value);
+  }
+
+  public getValue(): string {
+    return this.value;
+  }
+
+  public equals(other: ClienteAddress): boolean {
+    return this.value === other.getValue();
+  }
+}
